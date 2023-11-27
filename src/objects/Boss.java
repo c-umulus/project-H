@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import frame.GameFrame;
 
 public class Boss {
+	public int a = 1;
 
 	private Boss boss = this;
 	private static final String TAG = "Boss : ";
