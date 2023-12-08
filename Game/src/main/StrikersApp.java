@@ -6,6 +6,7 @@ public class StrikersApp {
 
 	public StrikersApp() {
 		init();
+		System.out.println("a");
 	}
 
 	private void init() {
