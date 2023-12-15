@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="gson-2.8.5.jar"/>
 	<classpathentry kind="lib" path="lombok.jar"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/jl1.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

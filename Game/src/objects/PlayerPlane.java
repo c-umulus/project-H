@@ -2,6 +2,7 @@ package objects;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -16,6 +17,7 @@ public class PlayerPlane extends JLabel {
 	public final static String TAG = "Player: ";
 
 	private GameFrame gameFrame;
+	private PlayerAttack playerattack;
 	private EnemyUnit enemyUnit;
 	private Boss boss;
 	ArrayList<EnemyUnit> enemyUnitList = new ArrayList<EnemyUnit>(); // 총알피격시 객체를 담을 벡터
@@ -30,6 +32,8 @@ public class PlayerPlane extends JLabel {
 	private int life = 4;
 	private int pCount; // 총알 발사 속도
 	private boolean invincible; // 무적상태
+	
+	private int score; // 점수
 	
 	private int wepponLevel = 0;
 	public int select;// player 선택
@@ -299,16 +303,19 @@ public class PlayerPlane extends JLabel {
 		if (!invincible && isAttack && pCount % 30 == 0) { // 총알의 발사 속도를 조절
 			if (wepponLevel == 0) { // 총알 한줄만 발사
 				// 총알이 생성되는 위치, 각도, 발사속도 조절
+				gameFrame.playSound(new File("res/shoot.wav"));
 				playerAttack = new PlayerAttack(boss, x + 20, y - 40, 90, 2);
 				playerAttackList.add(playerAttack); // arrayList에 저장한다
 			}
 			if (wepponLevel == 1) { // 총알 2줄 발사
+				gameFrame.playSound(new File("res/shoot.wav"));
 				playerAttack = new PlayerAttack(boss, x + 10, y - 40, 90, 2);
 				playerAttackList.add(playerAttack);
 				playerAttack = new PlayerAttack(boss, x + 30, y - 40, 90, 2);
 				playerAttackList.add(playerAttack);
 			}
 			if (wepponLevel == 2) { // 총알 3줄 발사
+				gameFrame.playSound(new File("res/shoot.wav"));
 				playerAttack = new PlayerAttack(boss, x + 0, y - 40, 90, 2);
 				playerAttackList.add(playerAttack);
 				playerAttack = new PlayerAttack(boss, x + 20, y - 40, 90, 2);
@@ -317,6 +324,7 @@ public class PlayerPlane extends JLabel {
 				playerAttackList.add(playerAttack);
 			}
 			if (wepponLevel == 3) { // 총알 4줄 발사
+				gameFrame.playSound(new File("res/shoot.wav"));
 				playerAttack = new PlayerAttack(boss, x - 10, y - 40, 90, 2);
 				playerAttackList.add(playerAttack);
 				playerAttack = new PlayerAttack(boss, x + 10, y - 40, 90, 2);
@@ -327,6 +335,7 @@ public class PlayerPlane extends JLabel {
 				playerAttackList.add(playerAttack);
 			}
 			if (wepponLevel == 4) { // 양 옆 대각선으로 나가는 총알 2줄 추가
+				gameFrame.playSound(new File("res/shoot.wav"));
 				playerAttack = new PlayerAttack(boss, x - 15, y - 40, 80, 2);
 				playerAttackList.add(playerAttack);
 				playerAttack = new PlayerAttack(boss, x - 10, y - 40, 90, 2);
@@ -343,16 +352,16 @@ public class PlayerPlane extends JLabel {
 		}
 
 		if (isUp) {
-			y--;
+		    y -= 1;
 		}
 		if (isDown) {
-			y++;
+		    y += 3;
 		}
 		if (isLeft) {
-			x--;
+		    x -= 1;
 		}
 		if (isRight) {
-			x++;
+		    x += 1;
 		}
 	}
 
@@ -466,6 +475,8 @@ public class PlayerPlane extends JLabel {
 
 					if (enemyUnitList.get(j).life == 0) { // 적의 체력이 다 깍이면 리스트에서 제거 후 폭파 연산
 						// enemyUnitList.remove(j);
+						score += 100;
+						gameFrame.playSound(new File("res/die.wav"));
 						System.out.println("적 hp 0 됨");
 						check.add(j);
 						enemyUnitList.get(j).crushCheck = true;
@@ -495,13 +506,20 @@ public class PlayerPlane extends JLabel {
 		return result;
 	}
 
+	public int getScore() { // 최종 점수 더하는 함수
+		score = score + playerAttack.getScoreB();;
+		return score;
+	}
+
+	
 	
 	private void gameOver() {
 		if(life<=0) {
 			islife =false; //dispose 해도 안의 쓰레드는 살아있다...  이 명령 추가.. 그냥 완전 다 삭제해주는 함수는 없나...
 			gameFrame.isgame = false;
-			gameFrame.dispose(); 
-			new GameFrame();
+			gameFrame.bgstop();
+			gameFrame.playSound(new File("res/gameover.wav"));
+			gameFrame.showScorePanel(score);
 		}
 		
 	}

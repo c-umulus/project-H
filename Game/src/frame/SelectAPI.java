@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -72,6 +73,7 @@ public class SelectAPI extends JPanel implements screenSize{
 		btn1.addMouseListener(new MouseAdapter() { // 버튼 클릭 리스너
 			@Override
 			public void mousePressed(MouseEvent e) {
+				gameFrame.playSound(new File("res/ch.wav"));
 				gameFrame.change("gameMap");
 				batch("playerPlane");
 			}
@@ -93,6 +95,7 @@ public class SelectAPI extends JPanel implements screenSize{
 		btn2.addMouseListener(new MouseAdapter() { // 버튼 클릭 리스너
 			@Override
 			public void mousePressed(MouseEvent e) {
+				gameFrame.playSound(new File("res/ch.wav"));
 				gameFrame.change("gameMap");
 				batch("playerPlane2");
 			}
@@ -114,6 +117,7 @@ public class SelectAPI extends JPanel implements screenSize{
 		btn3.addMouseListener(new MouseAdapter() { // 버튼 클릭 리스너
 			@Override
 			public void mousePressed(MouseEvent e) {
+				gameFrame.playSound(new File("res/ch.wav"));
 				gameFrame.change("gameMap");
 				batch("playerPlane3");
 			}
@@ -135,6 +139,7 @@ public class SelectAPI extends JPanel implements screenSize{
 		btn4.addMouseListener(new MouseAdapter() { // 버튼 클릭 리스너
 			@Override
 			public void mousePressed(MouseEvent e) {
+				gameFrame.playSound(new File("res/ch.wav"));
 				gameFrame.change("gameMap");
 				batch("playerPlane4");
 			}
@@ -156,6 +161,7 @@ public class SelectAPI extends JPanel implements screenSize{
 		btn5.addMouseListener(new MouseAdapter() { // 버튼 클릭 리스너
 			@Override
 			public void mousePressed(MouseEvent e) {
+				gameFrame.playSound(new File("res/ch.wav"));
 				gameFrame.change("gameMap");
 				batch("playerPlane5");
 			}

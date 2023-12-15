@@ -2,10 +2,18 @@ package frame;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 
 import objects.PlayerPlane;
+
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 public class GameFrame extends JFrame implements screenSize {
 
@@ -15,6 +23,7 @@ public class GameFrame extends JFrame implements screenSize {
 	public GameTitle gameTitle; // 타이틀 인트로 패널
 	public SelectAPI selectAPI; // 선택 패널
 	public PlayerPlane player; // 플레이어 선언
+	private Player jlPlayer;
 
 	public GameFrame() {
 		init();
@@ -37,21 +46,34 @@ public class GameFrame extends JFrame implements screenSize {
 		setLocationRelativeTo(null);
 	}
 
+	public void showScorePanel(int finalScore) {
+	    ScorePanel scorePanel = new ScorePanel(this, finalScore);
+	    getContentPane().removeAll();
+	    getContentPane().add(scorePanel);
+	    revalidate();
+	    repaint();
+	}
+	
 	// 패널 바꾸기 함수
 	public void change(String panelName) {
 		if (panelName.equals("gameTitle")) {
+			bgplay();
 			gameTitle = new GameTitle(gameFrame);
 			getContentPane().removeAll();
 			getContentPane().add(gameTitle);
 			revalidate();
 			repaint();
 		} else if (panelName.equals("selectAPL")) {
+			bgstop();
+			slbgplay();
 			selectAPI = new SelectAPI(gameFrame);
 			getContentPane().removeAll();
 			getContentPane().add(selectAPI);
 			revalidate();
 			repaint();
 		} else if (panelName.equals("gameMap")) {
+			bgstop();
+			mainbgplay();
 			gamePanel = new GamePanel(gameFrame);
 			getContentPane().removeAll();
 			getContentPane().add(gamePanel);
@@ -121,6 +143,79 @@ public class GameFrame extends JFrame implements screenSize {
 				}
 			}
 		});
+	}
+	
+	public void mainbgplay() { // 배경음악 재생
+		try {
+			FileInputStream fileInputStream = new FileInputStream("res/mainbgm.mp3");
+			BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+			jlPlayer = new Player(bufferedInputStream);
+			new Thread() {
+				public void run() {
+					try {
+						jlPlayer.play();
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+				}
+			}.start();
+		} catch (Exception e) {
+		System.out.println(e.getMessage());
+		}
+	}
+	
+	public void slbgplay() { // 배경음악 재생
+		try {
+			FileInputStream fileInputStream = new FileInputStream("res/slbgm.mp3");
+			BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+			jlPlayer = new Player(bufferedInputStream);
+			new Thread() {
+				public void run() {
+					try {
+						jlPlayer.play();
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+				}
+			}.start();
+		} catch (Exception e) {
+		System.out.println(e.getMessage());
+		}
+	}
+	
+	public void bgplay() { // 배경음악 재생
+		try {
+			FileInputStream fileInputStream = new FileInputStream("res/bgm.mp3");
+			BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+			jlPlayer = new Player(bufferedInputStream);
+			new Thread() {
+				public void run() {
+					try {
+						jlPlayer.play();
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+				}
+			}.start();
+		} catch (Exception e) {
+		System.out.println(e.getMessage());
+		}
+	}
+	
+	public void bgstop() { // 배경음악 종료
+		if (jlPlayer != null && !jlPlayer.isComplete()) {
+            jlPlayer.close();
+        }
+	}
+	
+	public void playSound(File file) {
+	    try {
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(AudioSystem.getAudioInputStream(file));
+	        clip.start();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 
 }

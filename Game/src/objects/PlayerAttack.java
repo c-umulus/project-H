@@ -23,6 +23,7 @@ public class PlayerAttack implements Runnable {
 	private int width;
 	private int height;
 	private boolean islife; // Thread를 삭제시키기 위한 구문
+	private int score;
 
 	public PlayerAttack() {
 		// TODO Auto-generated constructor stub
@@ -134,6 +135,8 @@ public class PlayerAttack implements Runnable {
 
 				if (boss.getLife() == 0) {
 					explosePlayer(boss); // 충돌 폭발 메서드
+					// 보스 처치 시 300점 카운트
+					score += 300;
 				}
 
 				Thread.sleep(10);
@@ -150,7 +153,12 @@ public class PlayerAttack implements Runnable {
 
 	}
 
-
+	public int getScoreB() { // 점수 더하는 함수
+		score =+ score;
+	    	return score;
+	}
+	
+	
 	public void crash() { // 플레이어 총알이 보스에 부딪쳤을 시 충돌연산
 		if (Math.abs(((boss.getX()) + boss.getWidth() / 2) - (x + width / 3)) < (width / 3 + boss.getWidth() / 3)
 				&& Math.abs(((boss.getY()) + boss.getHeight() / 2) - (y + height / 3)) < (height / 3
