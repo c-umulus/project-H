@@ -67,6 +67,9 @@ public class ScorePanel extends JPanel implements screenSize {
 
         add(scoreLabel, BorderLayout.CENTER);
     }
+    
+	
+
 
     @Override
     protected void paintComponent(Graphics g) {

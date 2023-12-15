@@ -1,25 +1,24 @@
 package objects;
 
 import java.awt.Graphics;
-
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-// 궁극기 아이템
+// 생명 아이템
 
-public class Item1 extends Item{
-	private Item1 item1 = this;
+public class Item3 extends Item{
+	private Item3 item2 = this;
 	private static final String TAG = "Item1 : ";
 
 
-	public Item1(PlayerPlane player, int x, int y, int w, int h) {
+	public Item3 (PlayerPlane player, int x, int y, int w, int h) {
 		this.player = player;
 		this.x = x;
 		this.y = y;
 		this.width = w;
 		this.height = h;
-		this.image = new ImageIcon("images/item1.png").getImage();
+		this.image = new ImageIcon("images/item3.png").getImage();
 		this.islife = true;
 
 		this.move();
@@ -34,14 +33,13 @@ public class Item1 extends Item{
 				while (islife) {
 					try {
 						Thread.sleep(5);
-
-							movedown();
 						
-						if (y > 900) {
-							System.out.println("item1 쓰레드 종료");
-							islife =false;
-						}
+						movedown();
 
+						if (y > 900) {
+							System.out.println("item3 쓰레드 종료");
+							islife = false;
+						}
 
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -50,11 +48,11 @@ public class Item1 extends Item{
 			}
 		});
 
-		t2.setName("item1 Move");
+		t2.setName("item3 Move");
 		t2.start();
 	}
 
-	public void crush() { // 적비행기-Player 충돌
+	public void crush() { // 비행기와 아이템 충돌시
 
 		new Thread(new Runnable() {
 
@@ -74,11 +72,8 @@ public class Item1 extends Item{
 
 					try {
 						if (collision) {
-							// 궁극기 사용
-							setY(900);
-							player.useUltimate();
-							
-
+							setY(900); // 아이템 객체 맵 밖으로 던지기
+							player.setLife(player.getLife()+1);
 						}
 						Thread.sleep(10);
 
@@ -104,9 +99,3 @@ public class Item1 extends Item{
 	}
 
 }
-
-
-
-
-
-

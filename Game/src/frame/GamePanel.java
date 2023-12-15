@@ -23,6 +23,8 @@ import objects.Enemy9;
 import objects.Enemy10;
 import objects.EnemyUnit;
 import objects.Item1;
+import objects.Item2;
+import objects.Item3;
 import objects.PlayerPlane;
 
 public class GamePanel extends JPanel { // 인게임 패널
@@ -34,6 +36,13 @@ public class GamePanel extends JPanel { // 인게임 패널
 	private Boss boss; // 보스 선언
 	
 	private Item1 item1;
+	private Item2 item2;
+	private Item3 item3;
+	private Mission1 mission1;
+	private Mission2 mission2;
+	private Mission3 mission3;
+	private Mission4 mission4;
+	private Mission5 mission5;
 
 	private JLabel laLifecount, laLifecount2, laLifecount3, laLifecount4; // lifecount 라벨
 	private ImageIcon lifeCounticon;
@@ -128,6 +137,29 @@ public class GamePanel extends JPanel { // 인게임 패널
 		if(item1 != null) {
 			item1.itemUpdate(g);
 		}
+		
+		if(item2 != null) {
+			item2.itemUpdate(g);
+		}
+		if(item3 != null) {
+			item3.itemUpdate(g);
+		}
+		
+		if(mission1 != null) {
+			mission1.missionDraw(g);
+		}
+		if(mission2 != null) {
+			mission2.missionDraw(g);
+		}
+		if(mission3 != null) {
+			mission3.missionDraw(g);
+		}
+		if(mission4 != null) {
+			mission4.missionDraw(g);
+		}
+		if(mission5 != null) {
+			mission5.missionDraw(g);
+		}
 
 		repaint();
 	}
@@ -201,6 +233,11 @@ public class GamePanel extends JPanel { // 인게임 패널
 			enemyUnits.add(new Enemy1(gameFrame.player, 200, -150, 50, 50));
 			enemyUnits.add(new Enemy1(gameFrame.player, 250, -200, 50, 50));
 		}
+		
+		if(appear == 3500) {
+			mission3 = new Mission3(gameFrame.player, 400, 0, 200, 100);
+			gameFrame.contextMission(mission3);
+		}
 
 		if (appear == 2000 || appear == 5000) {
 			enemyUnits.add(new Enemy1(gameFrame.player, 500, 0, 50, 50));
@@ -216,26 +253,38 @@ public class GamePanel extends JPanel { // 인게임 패널
 		}
 		
 		if (appear == 4000) {
-			enemyUnits.add(new Enemy7(gameFrame.player, 500, 200, 90, 70));
+			item1 = new Item1(gameFrame.player, 250, 0, 50, 50);
 		}
 		
 		if (appear == 4200) {
+			
+			item2 = new Item2(gameFrame.player, 100, 0, 50, 50);
+			item3 = new Item3(gameFrame.player, 400, 0, 50, 50);
+		}
+		
+		if(appear == 5500) {
 			enemyUnits.add(new Enemy8(gameFrame.player, 60, 150, 90, 65));
+			mission4 = new Mission4(gameFrame.player, 400, 0, 200, 100);
+			gameFrame.contextMission(mission4);
 		}
 		
 		if (appear == 7000) {
 			enemyUnits.add(new Enemy2(gameFrame.player, -100, 300, 150, 150));
 			enemyUnits.add(new Enemy2(gameFrame.player, 500, 300, 150, 150));
+			mission1 = new Mission1(gameFrame.player, 400, 0, 200, 100);
+			
 		}
 
 		if (appear == 8000) {
 			enemyUnits.add(new Enemy5(gameFrame.player, 300, -50, 100, 100));
 			enemyUnits.add(new Enemy5(gameFrame.player, 500, -50, 100, 100));
+			item3 = new Item3(gameFrame.player, 300, 0, 50, 50);
 		}
 
 		if (appear == 9000) {
 			enemyUnits.add(new Enemy6(gameFrame.player, 650, 400, 200, 200));
-
+			mission2 = new Mission2(gameFrame.player, 400, 0, 200, 100);
+			gameFrame.contextMission(mission2);
 		}
 
 
@@ -246,6 +295,7 @@ public class GamePanel extends JPanel { // 인게임 패널
 			enemyUnits.add(new Enemy1(gameFrame.player, 300, 0, 50, 50));
 			enemyUnits.add(new Enemy1(gameFrame.player, 400, 0, 50, 50));
 			enemyUnits.add(new Enemy1(gameFrame.player, 500, 0, 50, 50));
+			enemyUnits.add(new Enemy7(gameFrame.player, 500, 200, 90, 70));
 		}
 		
 		if (appear == 11000) {
@@ -265,8 +315,16 @@ public class GamePanel extends JPanel { // 인게임 패널
 		}
 		
 		if(appear == 700) {
-			System.out.println("g");
-			item1 = new Item1(gameFrame.player, 200, 100, 50, 50);
+			//mission1 = new Mission1(gameFrame.player, 400, 0, 200, 100);
+			//mission2 = new Mission2(gameFrame.player, 400, 0, 200, 100);
+			//gameFrame.contextMission(mission2);
+			//mission3 = new Mission3(gameFrame.player, 400, 0, 200, 100);
+			//gameFrame.contextMission(mission3);
+			//mission4 = new Mission4(gameFrame.player, 400, 0, 200, 100);
+			//gameFrame.contextMission(mission4);
+			mission5 = new Mission5(gameFrame.player, 400, 0, 200, 100);
+			gameFrame.contextMission(mission5);
+			item2 = new Item2(gameFrame.player, 300, 0, 50, 50);
 		}
 	}
 

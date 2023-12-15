@@ -24,6 +24,11 @@ public class GameFrame extends JFrame implements screenSize {
 	public SelectAPI selectAPI; // 선택 패널
 	public PlayerPlane player; // 플레이어 선언
 	private Player jlPlayer;
+	
+	public Mission2 mission2;
+	public Mission3 mission3;
+	public Mission4 mission4;
+	public Mission5 mission5;
 
 	public GameFrame() {
 		init();
@@ -103,18 +108,30 @@ public class GameFrame extends JFrame implements screenSize {
 					break;
 				case KeyEvent.VK_SPACE:
 					player.setAttack(true);
+					if(mission2 != null) {
+						mission2.setSpacebar(1);
+					}
 					break;
 				case KeyEvent.VK_UP:
 					player.setUp(true);
 					break;
 				case KeyEvent.VK_DOWN:
 					player.setDown(true);
+					if(mission5 != null) {
+						mission5.setBack(1);
+					}
 					break;
 				case KeyEvent.VK_LEFT:
 					player.setLeft(true);
+					if(mission3 != null) {
+						mission3.setLeft(1);
+					}
 					break;
 				case KeyEvent.VK_RIGHT:
 					player.setRight(true);
+					if(mission4 != null) {
+						mission4.setRight(1);
+					}
 					break;
 				}
 			}
@@ -216,6 +233,19 @@ public class GameFrame extends JFrame implements screenSize {
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
+	}
+	
+	public void contextMission(Mission2 mission2) {
+	    this.mission2 = mission2;
+	}
+	public void contextMission(Mission3 mission3) {
+	    this.mission3 = mission3;
+	}
+	public void contextMission(Mission4 mission4) {
+	    this.mission4 = mission4;
+	}
+	public void contextMission(Mission5 mission5) {
+	    this.mission5 = mission5;
 	}
 
 }

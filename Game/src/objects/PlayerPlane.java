@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 
 import frame.GameFrame;
 import frame.GameTitle;
+import frame.Mission1;
 
 public class PlayerPlane extends JLabel {
 
@@ -20,6 +21,7 @@ public class PlayerPlane extends JLabel {
 	private PlayerAttack playerattack;
 	private EnemyUnit enemyUnit;
 	private Boss boss;
+	public Mission1 mission1;
 	ArrayList<EnemyUnit> enemyUnitList = new ArrayList<EnemyUnit>(); // 총알피격시 객체를 담을 벡터
 
 	private ImageIcon playerIcon; //기본 아이콘
@@ -428,6 +430,12 @@ public class PlayerPlane extends JLabel {
 			this.boss = boss;
 		}
 	}
+	
+	public void contextMission (Mission1 mission1) {
+		if(mission1 != null) {
+			this.mission1 = mission1;
+		}
+	}
 
 	// 충돌판정 쓰레드 종류
 	// 적 총알이 내 비행기에 부딪쳤을 때 처리하는 쓰레드 1 , 내 비행기가 적 비행기랑 부딪쳤을 때 스레드2(에너미마다. 234567) .
@@ -509,6 +517,28 @@ public class PlayerPlane extends JLabel {
 	public int getScore() { // 최종 점수 더하는 함수
 		score = score + playerAttack.getScoreB();;
 		return score;
+	}
+	public void bonusScore(int bonus) {  // 보너스 점수 더하는 함수
+		this.score += bonus;
+	}
+
+	
+	public void useUltimate() {
+		for (int j = 0; j < this.enemyUnitList.size(); j++) {
+			try {
+				ImageIcon explosionIcon = new ImageIcon("images/explosion.gif");
+				enemyUnitList.get(j).image = explosionIcon.getImage();
+				Thread.sleep(100);
+				enemyUnitList.get(j).setY(900); 
+				} catch (InterruptedException e) {
+				e.printStackTrace();			}
+			}
+
+		
+		for (Integer j : check) {
+			enemyUnitList.remove(j);
+		}
+		
 	}
 
 	

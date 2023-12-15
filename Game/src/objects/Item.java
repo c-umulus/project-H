@@ -14,7 +14,6 @@ public abstract class Item extends JLabel{
 	protected int width;
 	protected int height;
 	protected Image image;
-	protected int life;
 	protected boolean collision = false;// 플레이어와 적기몸체가 충돌시 체크
 	protected boolean islife; // 스레드 생명
 	
@@ -51,36 +50,12 @@ public abstract class Item extends JLabel{
 		this.collision = collision;
 	}
 
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
 	public Image getImage() {
 		return image;
 	}
 
 	public void setImage(Image image) {
 		this.image = image;
-	}
-
-	public int getLife() {
-		return life;
-	}
-
-	public void setLife(int life) {
-		this.life = life;
 	}
 
 
