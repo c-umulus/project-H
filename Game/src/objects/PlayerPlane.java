@@ -23,11 +23,11 @@ public class PlayerPlane extends JLabel {
 	private ImageIcon playerIcon; //기본 아이콘
 	private ImageIcon playerInvincibleIcon; //무적상태시 아이콘
 
-	private int width = 70;
-	private int height = 65;
+	private int width = 100;
+	private int height = 100;
 	private int x = (GameFrame.SCREEN_WIDTH / 2) - (width / 2);
 	private int y = (GameFrame.SCREEN_HEIGHT - (height * 2));
-	private int life = 3;
+	private int life = 4;
 	private int pCount; // 총알 발사 속도
 	private boolean invincible; // 무적상태
 	
@@ -47,7 +47,7 @@ public class PlayerPlane extends JLabel {
 
 	ArrayList<Integer> check = new ArrayList<>(); // 필요없는 총알인덱스 체크용
 
-	public PlayerPlane(GameFrame gameFrame,String PLANE) {
+	public PlayerPlane(GameFrame gameFrame, String PLANE) {
 		
 		this.gameFrame = gameFrame;
 		playerIcon = new ImageIcon("images/Player" + PLANE + ".png");
@@ -59,11 +59,21 @@ public class PlayerPlane extends JLabel {
 		if (PLANE.equals("PLANE1")) {
 			select = 1;
 		}
+		
 		if (PLANE.equals("PLANE2")) {
 			select = 2;
 		}
+		
 		if (PLANE.equals("PLANE3")) {
 			select = 3;
+		}
+		
+		if (PLANE.equals("PLANE4")) {
+			select = 4;
+		}
+		
+		if (PLANE.equals("PLANE5")) {
+			select = 5;
 		}
 		
 		setIcon(playerIcon);
@@ -362,6 +372,15 @@ public class PlayerPlane extends JLabel {
 			}
 			if (select == 3) {
 				g.drawImage(playerAttack.playerBulletImg3, (int) playerAttack.getX(), (int) playerAttack.getY(), 20, 20,
+						null);
+			}
+			if (select == 4) {
+				g.drawImage(playerAttack.playerBulletImg4, (int) playerAttack.getX(), (int) playerAttack.getY(), 20, 20,
+						null);
+				
+			}
+			if (select == 5) {
+				g.drawImage(playerAttack.playerBulletImg5, (int) playerAttack.getX(), (int) playerAttack.getY(), 20, 20,
 						null);
 			}
 			// PlayaerAttack의 자료형을 double로 두고, drawImage를 돌릴 때만 형변환 해준다 (삼각함수 계산을 위해)

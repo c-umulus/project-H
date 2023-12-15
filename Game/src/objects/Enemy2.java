@@ -21,7 +21,7 @@ public class Enemy2 extends EnemyUnit {
 		this.width = w;
 		this.height = h;
 		this.image = new ImageIcon("images/enemy2.png").getImage();
-		this.life = 10;
+		this.life = 3;
 		this.crushCheck = false;
 		this.islife = true;
 
@@ -52,11 +52,11 @@ public class Enemy2 extends EnemyUnit {
 							moveup();
 							moveright();
 						}
+						
 						bulletCreate();
 						count++;
 
 						if (y > 900) {
-							System.out.println("enemy2 쓰레드 종료");
 							islife = false;
 						}
 
@@ -88,7 +88,6 @@ public class Enemy2 extends EnemyUnit {
 						}
 
 						if (y < -300) {
-							System.out.println("enemy2 쓰레드 종료");
 							islife =false; //break 말고 이게 더 보기 좋은 거 같음.
 						}
 
@@ -159,14 +158,6 @@ public class Enemy2 extends EnemyUnit {
 	public void enemyUpdate(Graphics g) {
 		enemyDraw(g);
 	}
-
-//	private void enemyAttack() { //이제 안쓰는 메서드
-//		for (int i = 0; i < enemyAttackkList.size(); i++) {
-//			enemyAttack = enemyAttackkList.get(i);
-////			if (enemy2.life > 0)  //발사는 여기서 구현하면 곤란
-////				enemyAttack.fire();
-//		}
-//	}
 
 	public void enemyDraw(Graphics g) { // 그림그리기
 		g.drawImage(image, x, y, width, height, null);

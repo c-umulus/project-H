@@ -21,7 +21,7 @@ public class Enemy6 extends EnemyUnit {
 		this.width = w;
 		this.height = h;
 		this.image = new ImageIcon("images/enemy6_2.png").getImage();
-		this.life = 20;
+		this.life = 3;
 		this.crushCheck = false;
 		this.islife = true;
 

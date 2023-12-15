@@ -16,9 +16,8 @@ public class SelectAPI extends JPanel implements screenSize{
 
 	private GameFrame gameFrame;
 	private SelectAPI selectAPI = this;
-	private ImageIcon player1Icon, player2Icon, player3Icon; // 플레이어 기체 이미지
-	private ImageIcon planeDetailIcon1, planeDetailIcon2, planeDetailIcon3; // 기체 상세설명 이미지
-	private ImageIcon bigPlayer1icon, bigPlayer2icon, bigPlayer3icon; // 버튼 누를시 커지는 이미지
+	private ImageIcon player1Icon, player2Icon, player3Icon, player4Icon, player5Icon; // 플레이어 기체 이미지
+	private ImageIcon bigPlayer1icon, bigPlayer2icon, bigPlayer3icon, bigPlayer4icon, bigPlayer5icon; // 버튼 누를시 커지는 이미지
 	private ImageIcon selectPlaneIcon = new ImageIcon("images/SelectPlane1.png");
 	private Image selectPlaneImg = selectPlaneIcon.getImage();
 	
@@ -32,34 +31,42 @@ public class SelectAPI extends JPanel implements screenSize{
 		player1Icon = new ImageIcon("images/PlayerPlane1.png");
 		player2Icon = new ImageIcon("images/PlayerPlane2.png");
 		player3Icon = new ImageIcon("images/PlayerPlane3.png");
+		player4Icon = new ImageIcon("images/PlayerPlane4.png");
+		player5Icon = new ImageIcon("images/PlayerPlane5.png");
 
 		bigPlayer1icon = new ImageIcon("images/BigPlane1.png");
 		bigPlayer2icon = new ImageIcon("images/BigPlane2.png");
 		bigPlayer3icon = new ImageIcon("images/BigPlane3.png");
-
-		planeDetailIcon1 = new ImageIcon("images/PlaneDetailImg1.png");
-		planeDetailIcon2 = new ImageIcon("images/PlaneDetailImg2.png");
-		planeDetailIcon3 = new ImageIcon("images/PlaneDetailImg3.png");
+		bigPlayer4icon = new ImageIcon("images/BigPlane4.png");
+		bigPlayer5icon = new ImageIcon("images/BigPlane5.png");
 
 		JButton btn1 = new JButton("", player1Icon);
 		JButton btn2 = new JButton("", player2Icon);
 		JButton btn3 = new JButton("", player3Icon);
+		JButton btn4 = new JButton("", player4Icon);
+		JButton btn5 = new JButton("", player5Icon);
 		JLabel planeImg = new JLabel("");
 
 		// 버튼 테두리 없음
 		btn1.setBorderPainted(false);
 		btn2.setBorderPainted(false);
 		btn3.setBorderPainted(false);
+		btn4.setBorderPainted(false);
+		btn5.setBorderPainted(false);
 
 		// 버튼 채우기 없음
 		btn1.setContentAreaFilled(false);
 		btn2.setContentAreaFilled(false);
 		btn3.setContentAreaFilled(false);
+		btn4.setContentAreaFilled(false);
+		btn5.setContentAreaFilled(false);
 
 		// 버튼 투명
 		btn1.setOpaque(false);
 		btn2.setOpaque(false);
 		btn3.setOpaque(false);
+		btn4.setOpaque(false);
+		btn5.setOpaque(false);
 
 		// 버튼 액션
 		btn1.addMouseListener(new MouseAdapter() { // 버튼 클릭 리스너
@@ -68,39 +75,38 @@ public class SelectAPI extends JPanel implements screenSize{
 				gameFrame.change("gameMap");
 				batch("playerPlane");
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				planeImg.setIcon(planeDetailIcon1);
-				btn1.setSize(100, 89);
-				btn1.setIcon(bigPlayer1icon);
-			}
+	            btn1.setSize(100, 95);
+	            btn1.setIcon(bigPlayer1icon);
+	         }
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				planeImg.setIcon(null);
-				btn1.setSize(70, 59);
+				btn1.setSize(85, 80);
 				btn1.setIcon(player1Icon);
 			}
 		});
+		
 		btn2.addMouseListener(new MouseAdapter() { // 버튼 클릭 리스너
 			@Override
 			public void mousePressed(MouseEvent e) {
 				gameFrame.change("gameMap");
 				batch("playerPlane2");
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				planeImg.setIcon(planeDetailIcon2);
-				btn2.setSize(100, 89);
-				btn2.setIcon(bigPlayer2icon);
-			}
+	            btn2.setSize(100, 89);
+	            btn2.setIcon(bigPlayer2icon);
+	         }
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				planeImg.setIcon(null);
-				btn2.setSize(70, 59);
+				btn2.setSize(95, 80);
 				btn2.setIcon(player2Icon);
 			}
 		});
@@ -111,38 +117,99 @@ public class SelectAPI extends JPanel implements screenSize{
 				gameFrame.change("gameMap");
 				batch("playerPlane3");
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				planeImg.setIcon(planeDetailIcon3);
-				btn3.setSize(100, 89);
-				btn3.setIcon(bigPlayer3icon);
-			}
+	            btn3.setSize(100, 89);
+	            btn3.setIcon(bigPlayer3icon);
+	         }
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				planeImg.setIcon(null);
-				btn3.setSize(70, 59);
+				btn3.setSize(85, 80);
 				btn3.setIcon(player3Icon);
 			}
 		});
+		
+		btn4.addMouseListener(new MouseAdapter() { // 버튼 클릭 리스너
+			@Override
+			public void mousePressed(MouseEvent e) {
+				gameFrame.change("gameMap");
+				batch("playerPlane4");
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+	            btn4.setSize(100, 89);
+	            btn4.setIcon(bigPlayer4icon);
+	         }
 
-		btn1.setBounds(100, 640, 70, 59);
-		btn2.setBounds(250, 640, 70, 59);
-		btn3.setBounds(400, 640, 70, 59);
-		planeImg.setBounds(180, 250, 223, 318);
+			@Override
+			public void mouseExited(MouseEvent e) {
+				planeImg.setIcon(null);
+				btn4.setSize(95, 80);
+				btn4.setIcon(player4Icon);
+			}
+		});
+		
+		btn5.addMouseListener(new MouseAdapter() { // 버튼 클릭 리스너
+			@Override
+			public void mousePressed(MouseEvent e) {
+				gameFrame.change("gameMap");
+				batch("playerPlane5");
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+	            btn5.setSize(100, 89);
+	            btn5.setIcon(bigPlayer5icon);
+	         }
 
-		this.add(planeImg);
+			@Override
+			public void mouseExited(MouseEvent e) {
+				planeImg.setIcon(null);
+				btn5.setSize(85, 80);
+				btn5.setIcon(player5Icon);
+			}
+		});
+
+		btn1.setBounds(170, 400, 85, 80);
+		btn2.setBounds(340, 410, 95, 80);
+		btn3.setBounds(100, 640, 85, 80);
+		btn4.setBounds(250, 640, 95, 80);
+		btn5.setBounds(410, 640, 85, 80);
+		
 		this.add(btn1);
 		this.add(btn2);
 		this.add(btn3);
+		this.add(btn4);
+		this.add(btn5);
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(selectPlaneImg, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, 196, 182, this);
-		repaint();
+	    super.paintComponent(g);
+
+	    int imgWidth = 620;
+	    int imgHeight = 820;
+
+	    // 이미지의 비율을 유지하면서 화면에 맞추기
+	    int panelWidth = getWidth();
+	    int panelHeight = getHeight();
+
+	    double widthRatio = (double) panelWidth / imgWidth;
+	    double heightRatio = (double) panelHeight / imgHeight;
+
+	    double scale = Math.min(widthRatio, heightRatio);
+
+	    int scaledWidth = (int) (imgWidth * scale);
+	    int scaledHeight = (int) (imgHeight * scale);
+
+	    int x = (panelWidth - scaledWidth) / 2;
+	    int y = (panelHeight - scaledHeight) / 2;
+
+	    g.drawImage(selectPlaneImg, x, y, scaledWidth, scaledHeight, this);
 	}
 	
 	
@@ -155,6 +222,12 @@ public class SelectAPI extends JPanel implements screenSize{
 			gameFrame.gamePanel.add(gameFrame.player);
 		} else if (playerPlane == "playerPlane3") {
 			gameFrame.player = new PlayerPlane(gameFrame, "PLANE3");
+			gameFrame.gamePanel.add(gameFrame.player);
+		} else if (playerPlane == "playerPlane4") {
+			gameFrame.player = new PlayerPlane(gameFrame, "PLANE4");
+			gameFrame.gamePanel.add(gameFrame.player);
+		} else if (playerPlane == "playerPlane5") {
+			gameFrame.player = new PlayerPlane(gameFrame, "PLANE5");
 			gameFrame.gamePanel.add(gameFrame.player);
 		}
 	}

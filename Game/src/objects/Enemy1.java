@@ -43,7 +43,6 @@ public class Enemy1 extends EnemyUnit {
 						movedown();
 
 						if (y > 900) {
-							System.out.println("enemy1MoveThread 종료");
 							islife = false;
 						}
 

@@ -5,7 +5,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class EnemyAttack implements Runnable {
-	// 클래스 이름을 크게 Bullet이라 짓고 둘이 상속받는게 좋았을 듯, 일단 시간없으니 진행
 
 	private EnemyAttack enemyAttack = this;
 

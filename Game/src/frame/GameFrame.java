@@ -25,12 +25,13 @@ public class GameFrame extends JFrame implements screenSize {
 	}
 
 	public void init() {
+		player = new PlayerPlane(this, "PLANE_TYPE");
 		change("gameTitle"); // 초기 타이틀 화면
 		isgame = false; // 게임 중 이지 않은 상태
 	}
 
 	public void setting() {
-		setTitle("Strikers 1945");
+		setTitle("Shooting Star");
 		setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);

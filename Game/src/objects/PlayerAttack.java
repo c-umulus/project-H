@@ -12,6 +12,8 @@ public class PlayerAttack implements Runnable {
 	Image playerBulletImg1 = new ImageIcon("images/playerBullet1.png").getImage();
 	Image playerBulletImg2 = new ImageIcon("images/bullet1.png").getImage();
 	Image playerBulletImg3 = new ImageIcon("images/bullet3.png").getImage();
+	Image playerBulletImg4 = new ImageIcon("images/bullet2.png").getImage();
+	Image playerBulletImg5 = new ImageIcon("images/bullet4.png").getImage();
 
 	private boolean collision;
 	private int x;
@@ -88,6 +90,7 @@ public class PlayerAttack implements Runnable {
 
 	public double getSpeed() {
 		return speed;
+	
 	}
 
 	public void setSpeed(double speed) {
